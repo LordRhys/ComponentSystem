@@ -12,9 +12,9 @@ public:
 
   bool m_isEnabled;
 
-	Component(void);
+  Component(void);
   Component(std::string l_name);
-	virtual ~Component(void);
+  virtual ~Component(void);
 
   virtual void Destroy();
   virtual void Awake();

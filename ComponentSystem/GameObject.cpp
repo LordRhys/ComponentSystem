@@ -2,11 +2,18 @@
 
   GameObject::GameObject(void)
   {
+    this->m_name = "GameObject";
+    this->m_tag = "";
+    this->m_transform = NULL;
+    this->m_parent = NULL;
   }
   
   GameObject::GameObject(std::string l_name)
   {
-
+    this->m_name = l_name;
+    this->m_tag = "";
+    this->m_transform = NULL;
+    this->m_parent = NULL;
   }
 
   GameObject::~GameObject(void)
@@ -16,7 +23,9 @@
 
   void GameObject::Create()
   {
-
+    Transform* l_transform = new Transform();
+    l_transform->m_gameObject = this;
+    
   }
 
   void GameObject::Destroy()

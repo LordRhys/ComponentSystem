@@ -6,6 +6,7 @@
 #include <vector>
 
 #include "Component.h"
+#include "Transform.h"
 
 class GameObject
 {
@@ -13,6 +14,7 @@ public:
   std::string m_name;
   std::string m_tag;
   GameObject* m_parent;
+  Transform* m_transform;
 
   typedef std::vector<Component*> component_vector;
   typedef component_vector::iterator component_vector_itr;
@@ -27,7 +29,7 @@ public:
 
   GameObject(void);
   GameObject(std::string l_name);
-	~GameObject(void);
+  ~GameObject(void);
 
   void Create();
   void Destroy();
