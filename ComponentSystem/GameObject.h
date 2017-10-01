@@ -5,8 +5,12 @@
 #include <typeinfo>
 #include <vector>
 
+#include <objbase.h>
+#include <guiddef.h>
+
 #include "Component.h"
 #include "Transform.h"
+#include "ComponentManager.h"
 
 class GameObject
 {
@@ -15,6 +19,7 @@ public:
   std::string m_tag;
   GameObject* m_parent;
   Transform* m_transform;
+  GUID m_guid;
 
   typedef std::vector<Component*> component_vector;
   typedef component_vector::iterator component_vector_itr;
@@ -35,7 +40,6 @@ public:
   void Destroy();
 
   void AddComponent(Component* l_component);
-  Component* FindComponentByName(std::string l_name);
 
   template <typename T>
   T* FindComponentByType()
@@ -56,4 +60,19 @@ public:
   GameObject* FindChildByName(std::string l_name);
   std::vector<GameObject*> FindAllChildrenByName(std::string l_name);
 
+};
+
+struct GameObjectComparer
+{
+  std::string n_name;
+
+  GameObjectComparer(std::string l_name)
+    : n_name(l_name)
+  {
+  }
+
+  bool operator()(GameObject* l_object)
+  {
+    return (l_object->m_name == n_name ? true : false);
+  }
 };
